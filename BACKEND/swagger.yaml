@@ -1,0 +1,90 @@
+swagger: "2.0"
+info:
+  description: "Api Rest, desarrollada para la materia de Base de Datos Avanzados"
+  version: "1.0.0"
+  title: "CLASH ROYALE API"
+  # termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "tvillago@espol.edu.ec"
+  # license:
+  #   name: "Apache 2.0"
+  #   url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api/battle"
+tags:
+- name: "battles"
+  description: "Operaciones sobre batallas"
+schemes:
+- "https"
+- "http"
+paths:
+  /top10-player:
+    get:
+      tags:
+      - "Top 10 de jugadores por victoria"
+      summary: "Top 10 players"
+      description: "Jugadores con más victorias"
+      operationId: "getPlayers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+  /top10-cards:
+    get:
+      tags:
+      - "Top 10 de cartas más usadas"
+      summary: "Top 10 cartas más usadas"
+      description: "Cartas más usadas por los ganadores de las partidas"
+      operationId: "getPlayers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+  /:
+    get:
+      tags:
+      - "Battles"
+      summary: "Battles"
+      description: "Obtiene todas las battles de la base de datos"
+      operationId: "getBattles"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+
+  /id:
+    get:
+      tags:
+      - "Battles por id"
+      summary: "Battle by id"
+      description: "Obtiene los datos de una battle en específico"
+      operationId: "getBattle"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: formData
+        name: id
+        description: "id de la battle para buscar"
+        required: true
+      responses:
+        default:
+          description: "successful operation"
+definitions:
+  
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"

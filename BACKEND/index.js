@@ -3,6 +3,8 @@
 const express = require('express');
 var cors = require('cors')
 const helmet = require('helmet');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('yamljs').load('./swagger.yaml');
 const app = express();
 
 
@@ -21,6 +23,7 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 app.use(helmet());
 app.use(cors())
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 //Routes
 battleApi(app);
 
