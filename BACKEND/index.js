@@ -23,7 +23,9 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 app.use(helmet());
 app.use(cors())
+app.use('/api', (req, res, next) => res.send({message: 'Api Royale'}));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
 //Routes
 battleApi(app);
 
@@ -36,5 +38,5 @@ app.use(wrapErrors);
 app.use(errorHandler);
 
 app.listen(config.port, () => {
-    console.log(`Listening http://localhost:${config.port}`);
+    console.log(`Listening http://localhost:${config.port}/api`);
 });
